@@ -11,11 +11,13 @@
 
 
 
+
 int main(int argc, char **argv) {
 
     if((check_args(argc,argv)) != 0){
         exit (1);
     }
+
     const char *delim="=";
     String *tmp_ptr;
     String **fields = &tmp_ptr;
@@ -43,6 +45,7 @@ int main(int argc, char **argv) {
     delete [] fields;
     return 0;
 }
+
 
 
 

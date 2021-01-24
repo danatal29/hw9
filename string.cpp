@@ -115,12 +115,24 @@ bool String::equals(const char *rhs) const {
     return (!strcmp(data, rhs));
 }
 
-
+size_t count_fields (const char *delimiters, const char *data,size_t length)  {
+    //char *ptr = NULL;
+    char buf1[length+1] ;
+    strcpy(buf1,data);
+    size_t count = 0;
+    char *ptr  = strtok(buf1, delimiters);
+    while(ptr != NULL){
+        count++;
+        ptr = strtok(NULL, delimiters);
+    }
+    return count;
+}
 
 /**
      * @brief count the fields in a string according to a delimiter
      * Does not change this.
      */
+     /**
 size_t count_fields (const char *delimiters, const char* data)  {
     if (delimiters == NULL) {
         exit(1);
@@ -142,18 +154,18 @@ size_t count_fields (const char *delimiters, const char* data)  {
             counter++;
         }
     }
-    /* string stars with delimiters */
+    /* string stars with delimiters *//*
     if(! delim.compare( data_clone.substr(0, delim.length())) ){
         counter --;
     }
-    /* string end with delimiter */
+    /* string end with delimiter *//*
     if(! delim.compare(data_clone.substr(data_clone.length()-delim.length(),
                                          delim.length())) ){
         counter --;
     }
     return counter+1;
 }
-
+*/
 /**
  * @brief Splits this to several sub-strings according to delimiters.
  * Allocates memory for output that the user must delete (using delete[]).
@@ -206,7 +218,7 @@ bool fill_array(const char *delimiters, String *fields,const char *data, size_t 
  * compute "size".
  */
 void String::split(const char *delimiters, String **output, size_t *size) const{
-    *size= count_fields (delimiters, data);
+    *size= count_fields (delimiters, data, length);
     if(output==NULL) { /*compute size*/
         return;
     }
