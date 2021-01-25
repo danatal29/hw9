@@ -30,33 +30,19 @@ int main(int argc, char **argv) {
         Ip ip_rule(pattern);
         ip_rule.set_value(val);
         parse_input(ip_rule);
-        //delete ip_rule;
 
     }
     else if((pattern.equals("src-port"))||(pattern.equals("dst-port"))){
         Port port_rule(pattern);
         port_rule.set_value(val);
         parse_input(port_rule);
-        //delete port_rule;
-    }
-    //delete [] fields;
-    //for (size_t i=0; i<field_count ; i++){
-       // std::cout<< "relese fields "<<i<<std::endl;
 
-        //delete &((*fields)[i]);
-    //}
-    //std::cout<< "delete array fields"<<std::endl;
+    }
+
     delete[] *fields;
-    //std::cout<< "delete array succeed"<<std::endl;
-    //std::cout<< "end of main"<<std::endl;
     return 0;
 }
 
-/*
-for (size_t i=0; i<field_count ; i++){
-    delete ((*fields)[i]);
-}
-*/
 
 
 

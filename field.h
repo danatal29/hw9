@@ -29,7 +29,6 @@ public:
     bool match(String packet);
 
 
-   // void print();
 
 /* getters*/
     String get_pattern();

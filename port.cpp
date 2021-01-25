@@ -9,10 +9,6 @@
 #define SEGMENTS 4
 #define BYTE 8
 
-/**class Port : public Field {
-private:
-    int range[2];
-**/
 
 
 Port::Port(String pattern):Field(pattern,PORT){
@@ -23,10 +19,6 @@ Port::Port(String pattern):Field(pattern,PORT){
 
 /*calculate address's value, caller to calc value need to delete subfields*/
 
-
-
-
-//" 22-33"
 
 bool Port::set_value(String val){
     String *fields;
@@ -54,13 +46,3 @@ bool  Port::match_value(String val) const{
 }
 
 
-
-/*
-void Port::print_port() {
-    print();
-    std::cout << "low range: " << range[0] << std::endl;
-    std::cout << "high range: " << range[1] << std::endl;
-
-    return;
-}
-*/

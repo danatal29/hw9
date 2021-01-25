@@ -7,13 +7,6 @@
 #include "string.h"
 #include <string.h>
 
-/*
-class String {
-    char *data;
-    size_t length;
-
-public:
-*/
 
 /**
     * @brief Initiates an empty string
@@ -58,9 +51,6 @@ String::~String() {
  * @brief Changes this from String
  */
 String& String::operator=(const String &rhs) {
-    /*if(rhs.data==NULL){
-        return NULL;
-    }*/
     if(this != &rhs) {
         delete[] data; /// maybe without []
         if (rhs.data==NULL) {
@@ -116,7 +106,6 @@ bool String::equals(const char *rhs) const {
 }
 
 size_t count_fields (const char *delimiters, const char *data,size_t length)  {
-    //char *ptr = NULL;
     char buf1[length+1] ;
     strcpy(buf1,data);
     size_t count = 0;
@@ -128,44 +117,7 @@ size_t count_fields (const char *delimiters, const char *data,size_t length)  {
     return count;
 }
 
-/**
-     * @brief count the fields in a string according to a delimiter
-     * Does not change this.
-     */
-     /**
-size_t count_fields (const char *delimiters, const char* data)  {
-    if (delimiters == NULL) {
-        exit(1);
-    }
-    std::cout << "delimiter: " << delimiters[0];
-    std::cout << "delimiters: " << delimiters;
-    std::string data_clone ;
-    data_clone.assign(data);
-    std::string delim ;
-    delim.assign(delimiters);
 
-    int counter =0;
-    auto start = 0U;
-    auto end = data_clone.find(delim);
-    while (end != std::string::npos) {
-        start = end + delim.length();
-        end = data_clone.find(delim, start);
-        if(start != end ){
-            counter++;
-        }
-    }
-    /* string stars with delimiters *//*
-    if(! delim.compare( data_clone.substr(0, delim.length())) ){
-        counter --;
-    }
-    /* string end with delimiter *//*
-    if(! delim.compare(data_clone.substr(data_clone.length()-delim.length(),
-                                         delim.length())) ){
-        counter --;
-    }
-    return counter+1;
-}
-*/
 /**
  * @brief Splits this to several sub-strings according to delimiters.
  * Allocates memory for output that the user must delete (using delete[]).
@@ -174,37 +126,27 @@ size_t count_fields (const char *delimiters, const char* data)  {
  * compute "size".
  */
 bool fill_array(const char *delimiters, String *fields,const char *data, size_t length)  {
-    //std::cout <<"inside fill array" << std::endl;
 
     if ((delimiters == NULL) || (fields == NULL)) {
-        //std::cout << "problem with pointers" << std::endl;
         return false;
     }
 
     char buf1[length+1] ;
     strcpy(buf1,data);
-    //std::cout << "strcpy succeed" << std::endl;
 
     int i = 0;
     char *p1 = strtok(buf1, delimiters);
-    //std::cout << "strtok succeed" << std::endl;
     while (p1 != NULL) {
-        //std::cout << "inside while" << std::endl;
 
         size_t temp_size = strlen(p1);
         char temp_token[temp_size+1];
         strcpy(temp_token,p1);
-       // std::cout << "strcpy succeed allocating new string" << std::endl;
         String *field=new String(temp_token);
-        //std::cout << "assigning value to field:" << i <<std::endl;
         fields[i] = *field;
         delete field;
-        //std::cout << "assign succeed" << std::endl;
         p1 = strtok(NULL, delimiters);
-        //std::cout << "strtok succeed" << std::endl;
         i++;
     }
-    //std::cout << "outside while returning from fill_array()" << std::endl;
     return true;
 }
 
@@ -224,12 +166,8 @@ void String::split(const char *delimiters, String **output, size_t *size) const{
         return;
     }
     String *fields= new String [*size];
-    //std::cout <<"allocated fields[] of size:"<< *size << std::endl;
 
-
-    //std::cout << "delete array fields!!!!!!!!!!!!!!!!!!!!!! split func" << std::endl;
     if(fill_array(delimiters,fields, data, length)) {
-        //std::cout << "returned from fill array" << std::endl;
         *output = fields;
         return;
     }
@@ -252,7 +190,6 @@ int String::to_integer() const {
  * Does not change this.
  */
 String String::trim() const{
-    //std::cout << "inside trim       " << std::endl;
     char *start=data;
     char *end=start+length-1;
     const char white_space=' ';
@@ -261,42 +198,16 @@ String String::trim() const{
         start++;
         counter--;
     }
-    //std::cout << " trim start:_" <<start<< std::endl;
     while(*end==white_space){
         end--;
         counter--;
     }
-    //std::cout << " trim counter:_" <<counter<< std::endl;
     char temp_str[counter+1];
     strncpy(temp_str,start,counter);
-    //std::cout << " after strncpy:_" << std::endl;
     temp_str[counter] = '\0';
 
-    //std::cout << " trim   ######test trim:" << temp_str<<"::"<< std::endl;
     String trim_str(temp_str);
-    //std::cout <<"returning from trim()"<< std::endl;
     return trim_str;
 }
-
-
-
-/* getters*/
-/*
-const char* get_data()const {
-    std::cout << "inside get data" << std::endl;
-    return data;
-}
-*/
-
-/*
-void  String:: print(){
-    std::cout <<"data:  "<< data << std::endl;
-    std::cout <<"length:  "<< length << std::endl;
-
-    return;
-}
-*/
-//};
-
 
 

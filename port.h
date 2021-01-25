@@ -14,8 +14,6 @@ public:
     bool set_value(String val);
     bool match_value(String val) const;
 
-    //void print_port();
-
     };
 
 #endif

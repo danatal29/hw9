@@ -16,7 +16,7 @@ public:
     Ip(String pattern);
     bool set_value(String val);
     bool match_value(String val) const;
-  //  void print_ip();
+
 };
 
 
