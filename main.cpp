@@ -9,15 +9,12 @@
 
 
 
-
-
-
 int main(int argc, char **argv) {
 
     if((check_args(argc,argv)) != 0){
         exit (1);
     }
-
+    
     const char *delim="=";
     String *tmp_ptr;
     String **fields = &tmp_ptr;
@@ -30,24 +27,36 @@ int main(int argc, char **argv) {
     pattern=pattern.trim();
     val=val.trim();
     if((pattern.equals("src-ip"))||(pattern.equals("dst-ip"))){
-        Ip *ip_rule = new Ip(pattern);
-        ip_rule->set_value(val);
-        parse_input(*ip_rule);
-        delete ip_rule;
+        Ip ip_rule(pattern);
+        ip_rule.set_value(val);
+        parse_input(ip_rule);
+        //delete ip_rule;
 
     }
     else if((pattern.equals("src-port"))||(pattern.equals("dst-port"))){
-        Port *port_rule = new Port(pattern);
-        port_rule->set_value(val);
-        parse_input(*port_rule);
-        delete port_rule;
+        Port port_rule(pattern);
+        port_rule.set_value(val);
+        parse_input(port_rule);
+        //delete port_rule;
     }
-    delete [] fields;
+    //delete [] fields;
+    //for (size_t i=0; i<field_count ; i++){
+       // std::cout<< "relese fields "<<i<<std::endl;
+
+        //delete &((*fields)[i]);
+    //}
+    //std::cout<< "delete array fields"<<std::endl;
+    delete[] *fields;
+    //std::cout<< "delete array succeed"<<std::endl;
+    //std::cout<< "end of main"<<std::endl;
     return 0;
 }
 
-
-
+/*
+for (size_t i=0; i<field_count ; i++){
+    delete ((*fields)[i]);
+}
+*/
 
 
 

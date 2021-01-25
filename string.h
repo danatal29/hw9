@@ -72,35 +72,15 @@ public:
 
 
 
+
     /**
     * @brief
     * Does not change this.
     */
-    //bool fill_array(const char *delimiters, String *fields) const ;
-
-/*
-    /**
-    * @brief
-    * Does not change this.
-    */
-    void print();
+    //void print();
 
 
-    /* getters */
-    /**
-     * @brief
-     * Does not change this.
-     */
-  //  size_t count_fields (const char *delimiters) const;
-
-
-    /**
-     * @brief
-     * Does not change this.
-     */
-//    const char* get_data()const  ;
-
-
+    
 
 };
 
