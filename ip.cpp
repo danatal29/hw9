@@ -17,8 +17,11 @@ Ip::Ip(String pattern):Field(pattern,IP),low(0),high(0){
 
 }
 
-
-/*calculate address's value, caller to calc value need to delete subfields*/
+/**
+ * @brief Returns integral address's value
+ * Returns true on success, fails if val is an illegal rule 
+ * caller to calc value need to delete subfields
+*/
 unsigned int calc_value(String val,const char *delim,String **fields,
                                                           bool *succ){
     size_t counter_fields=0;
@@ -30,7 +33,6 @@ unsigned int calc_value(String val,const char *delim,String **fields,
     }
 
     /*assist array, holds sub address int value*/
-
     int ip_val[SEGMENTS];
 
     for (int i=0; i<SEGMENTS ; i++){
@@ -45,7 +47,11 @@ unsigned int calc_value(String val,const char *delim,String **fields,
 }
 
 
-
+/**
+ * @brief Sets the legal range of values of Ip - [low,high]
+ * Returns true on success, fails if val is an illegal rule 
+ * caller to calc value and split needs to delete[]
+*/
 bool Ip::set_value(String val){
     String *fields;
     String *sub_fields;
@@ -81,13 +87,16 @@ bool Ip::set_value(String val){
     delete [] sub_fields;
     return true;
 }
-/* calc_value(String val,const char *sub_delim,String *sub_fields,
-                        size_t counter_sub_fields,bool *succ){ */
 
-bool Ip::match_value(String val) const{
+/**
+ * @brief Returns true if val is within legal range - [low,high]
+ */
+bool Ip::match_value(String val) const{\
+    /*initiating params for calc_value()*/
     const char *delim=".";
     String *fields;
     bool succ=false;
+
     unsigned int ip_val = calc_value(val,delim,&fields,&succ);
     if (succ==false){
         delete [] fields;
