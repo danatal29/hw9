@@ -1,5 +1,4 @@
 
-
 #include <stddef.h>
 #include <iostream>
 #include <string.h>
@@ -105,7 +104,3 @@ bool Field::match(String packet){
 field_type Field::get_type() const{
     return type;
 }
-
-
-
-

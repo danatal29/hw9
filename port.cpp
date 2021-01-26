@@ -1,6 +1,4 @@
-//
-// Created by user on 1/24/2021.
-//
+
 #include <iostream>
 #include <stddef.h>
 #include "port.h"
