@@ -138,7 +138,7 @@ bool fill_array(const char *delimiters, String *fields,const char *data, size_t 
     char *sub_string = strtok(buf1, delimiters);
 
     while (sub_string != NULL) {
-        size_t temp_size = strlen(p1);
+        size_t temp_size = strlen(sub_string);
         char temp_token[temp_size+1];
         strcpy(temp_token,sub_string);
         String *field=new String(temp_token);
